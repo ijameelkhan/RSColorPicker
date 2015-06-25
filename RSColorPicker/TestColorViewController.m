@@ -49,7 +49,7 @@
     // On/off circle or square
     UISwitch *circleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 340, 0, 0)];
     [circleSwitch setOn:_colorPicker.cropToCircle];
-    _colorPicker.excludedAreaFromCenter= 60;
+    _colorPicker.activeAreaFromEdge= 60;
     [circleSwitch addTarget:self action:@selector(circleSwitchAction:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:circleSwitch];
 

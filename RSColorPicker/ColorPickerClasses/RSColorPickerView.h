@@ -66,7 +66,7 @@ IB_DESIGNABLE
 /**
  *this specifies the area that is excluded from center
  */
-@property (readwrite) CGFloat excludedAreaFromCenter;
+@property (readwrite) CGFloat activeAreaFromEdge;
 
 
 

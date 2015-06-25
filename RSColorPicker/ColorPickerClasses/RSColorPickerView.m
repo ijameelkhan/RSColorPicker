@@ -177,7 +177,7 @@
     self.contentsLayer.masksToBounds = YES;
     self.cropToCircle = NO;
     self.selectionColor = [UIColor whiteColor];
-    self.excludedAreaFromCenter= 0.0f;
+    self.activeAreaFromEdge= 0.0f;
 }
 
 - (void)resizeOrRescale {
@@ -241,7 +241,7 @@
     [CATransaction setDisableActions:YES];
 
     CGRect activeAreaFrame = CGRectInset(self.bounds, self.paddingDistance, self.paddingDistance);
-    CGRect nonActiveAreaFrame = CGRectInset(self.bounds, self.paddingDistance+self.excludedAreaFromCenter, self.paddingDistance+self.excludedAreaFromCenter);
+    CGRect nonActiveAreaFrame = CGRectInset(self.bounds, self.paddingDistance+self.activeAreaFromEdge, self.paddingDistance+self.activeAreaFromEdge);
     
     if (self.cropToCircle) {
         self.contentsLayer.cornerRadius = self.paletteDiameter / 2.0;
