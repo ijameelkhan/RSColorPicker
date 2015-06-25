@@ -176,7 +176,7 @@
 
     self.contentsLayer.masksToBounds = YES;
     self.cropToCircle = NO;
-    self.selectionColor = [UIColor whiteColor];
+    self.selectionColor = [UIColor blueColor];
     self.activeAreaFromEdge= 0.0f;
 }
 
