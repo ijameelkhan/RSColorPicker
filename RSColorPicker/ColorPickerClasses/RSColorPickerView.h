@@ -62,6 +62,14 @@ IB_DESIGNABLE
  */
 @property (readonly) CGFloat paddingDistance;
 
+
+/**
+ *this specifies the area that is excluded from center
+ */
+@property (readwrite) CGFloat excludedAreaFromCenter;
+
+
+
 /**
  * Specifies if the loupe should be drawn or not.
  * Default: YES (show).

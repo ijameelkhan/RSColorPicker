@@ -33,6 +33,14 @@
 @property (nonatomic) UIBezierPath *activeAreaShape;
 
 
+
+/**
+ * A path which represents the area where user cant pick color, calculated from excludedAreaFromCenter
+ */
+@property (nonatomic) UIBezierPath *noActiveAreaShape;
+
+
+
 /**
  * The layer which contains just the currently selected color 
  * within the -selectionLayer.
@@ -169,6 +177,7 @@
     self.contentsLayer.masksToBounds = YES;
     self.cropToCircle = NO;
     self.selectionColor = [UIColor whiteColor];
+    self.excludedAreaFromCenter= 0.0f;
 }
 
 - (void)resizeOrRescale {
@@ -232,12 +241,16 @@
     [CATransaction setDisableActions:YES];
 
     CGRect activeAreaFrame = CGRectInset(self.bounds, self.paddingDistance, self.paddingDistance);
+    CGRect nonActiveAreaFrame = CGRectInset(self.bounds, self.paddingDistance+self.excludedAreaFromCenter, self.paddingDistance+self.excludedAreaFromCenter);
+    
     if (self.cropToCircle) {
         self.contentsLayer.cornerRadius = self.paletteDiameter / 2.0;
         self.activeAreaShape = [UIBezierPath bezierPathWithOvalInRect:activeAreaFrame];
+        self.noActiveAreaShape= [UIBezierPath bezierPathWithOvalInRect:nonActiveAreaFrame];
     } else {
         self.contentsLayer.cornerRadius = 0.0;
         self.activeAreaShape = [UIBezierPath bezierPathWithRect:activeAreaFrame];
+        self.noActiveAreaShape= [UIBezierPath bezierPathWithOvalInRect:nonActiveAreaFrame];
     }
 
     [CATransaction commit];
@@ -352,7 +365,7 @@
 #pragma mark - Touch Events -
 
 - (CGPoint)validPointForTouch:(CGPoint)touchPoint {
-    if ([self.activeAreaShape containsPoint:touchPoint]) {
+    if ([self.activeAreaShape containsPoint:touchPoint] && ![self.noActiveAreaShape containsPoint:touchPoint]) {
         return touchPoint;
     }
 
