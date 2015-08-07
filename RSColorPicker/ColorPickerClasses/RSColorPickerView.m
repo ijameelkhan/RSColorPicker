@@ -15,7 +15,7 @@
 #import "RSGenerateOperation.h"
 #import "RSSelectionLayer.h"
 
-#define kSelectionViewSize 22
+#define kSelectionViewSize 16
 
 @interface RSColorPickerView () {
     struct {

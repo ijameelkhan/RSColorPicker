@@ -19,12 +19,12 @@
 
 - (void)drawInContext:(CGContextRef)ctx {
     if (!self.outerRingColor || !self.innerRingColor) {
-        self.outerRingColor = [[UIColor colorWithWhite:1 alpha:0.4] CGColor];
-        self.innerRingColor = [[UIColor colorWithWhite:0 alpha:1] CGColor];
+        self.outerRingColor = [[UIColor colorWithWhite:1 alpha:1] CGColor];
+        self.innerRingColor = [[UIColor colorWithWhite:0 alpha:0] CGColor];
     }
     CGRect rect = self.bounds;
     
-    CGContextSetLineWidth(ctx, 3);
+    CGContextSetLineWidth(ctx, 1);
     CGContextSetStrokeColorWithColor(ctx, self.outerRingColor);
     CGContextStrokeEllipseInRect(ctx, CGRectInset(rect, 1.5, 1.5));
     
